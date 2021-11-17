@@ -77,3 +77,6 @@
 #### Access to the GraphQL Playground (Dev only)
 
 - `http://localhost:8080/graphql`
+
+#### Access to the MongoDB Express
+- `http://localhost:8081`
