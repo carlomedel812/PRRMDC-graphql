@@ -4,7 +4,7 @@ import { buildSchema } from "../../utils";
 import mongoose from "mongoose";
 
 import { resolvers } from "../../modules";
-import { UserMongooseModel } from "../../modules/user/model";
+import { UserModel } from "../../entities";
 
 import {
   connect,
@@ -17,7 +17,7 @@ beforeAll(async () => connect());
 
 // You can populate de DB before each test
 beforeEach(async () => {
-  await populateDatabase(UserMongooseModel, [
+  await populateDatabase(UserModel, [
     {
       content: "todo 1",
     },
@@ -81,7 +81,7 @@ describe("Todo", () => {
     const todoId = new mongoose.Types.ObjectId().toHexString().toString();
 
     // Add a todo with the generated ID in the database
-    await populateDatabase(UserMongooseModel, [
+    await populateDatabase(UserModel, [
       {
         _id: todoId,
         content: "todo 1",

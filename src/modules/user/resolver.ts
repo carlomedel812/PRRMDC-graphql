@@ -1,4 +1,4 @@
-import { Resolver, Arg, Query, Mutation, ID } from "type-graphql";
+import { Resolver, Arg, Query, Mutation, ID, Authorized } from "type-graphql";
 import { Service } from "typedi";
 import { ObjectId } from "mongodb";
 
@@ -6,27 +6,24 @@ import { User } from "../../entities";
 import UserService from "./service";
 import { NewUserInput } from "./input";
 
-/*
-  IMPORTANT: Your business logic must be in the service!
-*/
-
-@Service() // Dependencies injection
-@Resolver((of) => User)
+@Service()
+@Resolver()
 export default class UserResolver {
   constructor(private readonly userService: UserService) {}
 
+  @Authorized(['Customer'])
   @Query((returns) => User)
-  async getUser(@Arg("id") id: ObjectId) {
+  async getUserById(@Arg("id") id: ObjectId) {
     const user = await this.userService.getById(id);
-
     return user;
   }
 
+  @Authorized()
   @Mutation((returns) => User)
-  async createUser(
-    @Arg("newUserData") newUserData: NewUserInput
-  ): Promise<User> {
-    const user = await this.userService.addUser(newUserData);
-    return user;
+  async createUser(@Arg("newUserData") newUserData: NewUserInput) {
+    return await this.userService.addUser(newUserData);
   }
 }
+
+
+

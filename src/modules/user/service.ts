@@ -1,20 +1,25 @@
 import { Service } from "typedi";
 import { ObjectId } from "mongodb";
 
-import UserModel from "./model";
-import { User } from "../../entities";
+// import UserModel from "./model";
+
+import { User, UserModel } from "../../entities";
 import { NewUserInput } from "./input";
+import { UserRole } from "../../core/enums/user-role.enum";
 
 @Service() // Dependencies injection
 export default class UserService {
-  constructor(private readonly userModel: UserModel) {}
+  constructor() {}
 
   public async getById(_id: ObjectId): Promise<User | null> {
-    return this.userModel.getById(_id);
+    return UserModel.findById(_id);
   }
 
-  public async addUser(data: NewUserInput): Promise<User> {
-    const newUser = await this.userModel.create(data);
-    return newUser;
+  public async addUser(data: NewUserInput) {
+    const form = new UserModel(data);
+    const currentDate = new Date();
+    form.createdAt = currentDate;
+    form.updatedAt = currentDate;
+    return form.save();
   }
 }

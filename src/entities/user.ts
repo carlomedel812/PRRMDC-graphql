@@ -1,9 +1,11 @@
 import { ObjectType, Field } from "type-graphql";
-import { prop } from "@typegoose/typegoose";
+import { getModelForClass, prop } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
+import { BaseModel } from "./base-model";
+import { UserRole } from "../core/enums/user-role.enum";
 
 @ObjectType()
-export class User {
+export class User extends BaseModel {
   @Field()
   readonly _id!: ObjectId;
 
@@ -26,4 +28,10 @@ export class User {
   @prop({ default: true })
   @Field()
   isNewUser!: boolean;
+
+  @prop()
+  @Field(type => UserRole)
+  role!: UserRole
 }
+
+export const UserModel = getModelForClass(User);

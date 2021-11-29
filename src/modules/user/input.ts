@@ -1,5 +1,7 @@
 import { Field, InputType, ID } from "type-graphql";
 import { MaxLength, MinLength } from "class-validator";
+import { UserRole } from "../../core/enums/user-role.enum";
+import { User } from "../../entities";
 
 @InputType()
 export class NewUserInput {
@@ -12,4 +14,7 @@ export class NewUserInput {
   @MaxLength(50)
   @MinLength(1)
   lastName: string;
+
+  @Field(() => UserRole)
+  role: UserRole;
 }

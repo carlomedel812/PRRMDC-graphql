@@ -40,6 +40,7 @@
 │   └── modules
 │       └── user               # Module name
 │           ├── input.ts       # Input validation for mutations and queries using class-validator
+|           ├── output.ts      # Output data types for mutations and queries.
 │           ├── model.ts       # Database model
 │           ├── resolver.ts    # GraphQL revolver
 │           └── service.ts     # Business logic of your app

@@ -1,16 +1,17 @@
 import dotenv from "dotenv";
+import jwt from 'jsonwebtoken';
 
 enum Environment {
-  PRODUCTION = 'production',
-  STAGING = 'staging',
-  TEST = 'test',
-  DEVELOPMENT = 'development',
+  PRODUCTION = "production",
+  STAGING = "staging",
+  TEST = "test",
+  DEVELOPMENT = "development",
 }
 
 const CURRENT_ENVIRONMENT = Environment.DEVELOPMENT;
 
 dotenv.config({
-  path: `.env.${CURRENT_ENVIRONMENT}`
+  path: `.env.${CURRENT_ENVIRONMENT}`,
 });
 
 // Safely get the environment variable in the process
@@ -31,14 +32,22 @@ export interface Config {
   mongoDB: {
     uri: string;
   };
+  jwt: {
+    secretKey: string;
+    expiresIn: string;
+  };
 }
 
 // All your secrets, keys go here
 export const config: Config = {
   port: +env("PORT"),
   graphqlPath: env("GRAPHQL_PATH"),
-  isDev: env("NODE_ENV") === "development",
+  isDev: env("NODE_ENV") === Environment.DEVELOPMENT,
   mongoDB: {
     uri: env("MONGODB_URI"),
+  },
+  jwt: {
+    secretKey: env("JWT_SECRET_KEY"),
+    expiresIn: env("JWT_EXPIRY")
   }
 };

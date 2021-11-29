@@ -14,7 +14,11 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@app/core/interfaces": ["./src/core/interfaces"],
+      "@app/core/enums": ["./src/core/enums"],
+    }
   },
   "exclude": ["node_modules", "**/*.test.ts"],
   "include": ["./src/**/*"]
