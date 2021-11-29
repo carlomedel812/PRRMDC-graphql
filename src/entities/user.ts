@@ -25,9 +25,9 @@ export class User extends BaseModel {
   @Field()
   lastName!: string;
 
-  @prop({ default: true })
+  @prop()
   @Field()
-  isNewUser!: boolean;
+  phoneNumber!: string;
 
   @prop()
   @Field(type => UserRole)

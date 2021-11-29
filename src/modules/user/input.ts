@@ -2,6 +2,7 @@ import { Field, InputType, ID } from "type-graphql";
 import { MaxLength, MinLength } from "class-validator";
 import { UserRole } from "../../core/enums/user-role.enum";
 import { User } from "../../entities";
+import { SortDirection } from "../../core/enums/sort-direction.enum";
 
 @InputType()
 export class NewUserInput {
@@ -15,6 +16,24 @@ export class NewUserInput {
   @MinLength(1)
   lastName: string;
 
+  @Field()
+  phoneNumber: string;
+
   @Field(() => UserRole)
   role: UserRole;
+}
+
+@InputType()
+export class UserPaginationRequest {
+  @Field({ nullable: true })
+  before?: string;
+
+  @Field({ nullable: true })
+  after?: string;
+
+  @Field(() => SortDirection)
+  sortDirection: SortDirection;
+
+  @Field({ nullable: true })
+  limit?: number
 }

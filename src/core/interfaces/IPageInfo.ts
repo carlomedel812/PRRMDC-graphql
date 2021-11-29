@@ -1,6 +1,16 @@
-export interface IPageInfo {
+import { Field, InterfaceType, ObjectType } from "type-graphql";
+
+@ObjectType()
+export class IPageInfo {
+  @Field()
   hasNextPage: boolean;
+
+  @Field()
   hasPreviousPage: boolean;
-  startCursor: string | null;
-  endCursor: string | null;
+
+  @Field({ nullable: true })
+  startCursor?: string;
+
+  @Field({ nullable: true })
+  endCursor?: string;
 }
