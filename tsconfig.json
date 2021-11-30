@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictPropertyInitialization": false,
+    "baseUrl": "./",
     "paths": {
       "@app/core/interfaces": ["./src/core/interfaces"],
       "@app/core/enums": ["./src/core/enums"],
