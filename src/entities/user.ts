@@ -1,15 +1,16 @@
-import { ObjectType, Field } from "type-graphql";
+import { ObjectType, Field, Directive } from "type-graphql";
 import { getModelForClass, prop } from "@typegoose/typegoose";
 import { ObjectId } from "mongodb";
 import { BaseModel } from "./base-model";
 import { UserRole } from "../core/enums/user-role.enum";
+import { deprecate } from "util";
 
 @ObjectType()
 export class User extends BaseModel {
   @Field()
   readonly _id!: ObjectId;
 
-  @prop()
+  @prop({ default: new Date()})
   @Field(() => Date)
   createdAt!: Date;
 
@@ -17,21 +18,29 @@ export class User extends BaseModel {
   @Field(() => Date)
   updatedAt!: Date;
 
-  @prop()
+  @prop({ default: ""})
   @Field()
-  firstName!: string;
+  firstName: string;
 
-  @prop()
+  @prop({ default: ""})
   @Field()
-  lastName!: string;
+  lastName: string;
 
-  @prop()
+  @prop({ default: ""})
   @Field()
   phoneNumber!: string;
 
-  @prop()
-  @Field(type => UserRole)
-  role!: UserRole
+  @prop({ default: "" })
+  @Field()
+  email!: string;
+
+  @prop({ default: UserRole.CUSTOMER })
+  @Field((type) => UserRole)
+  role!: UserRole;
+
+  @prop({ default: true })
+  @Field()
+  activated: Boolean
 }
 
 export const UserModel = getModelForClass(User);

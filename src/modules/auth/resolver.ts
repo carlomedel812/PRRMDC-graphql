@@ -3,23 +3,21 @@ import { Service } from "typedi";
 import { ObjectId } from "mongodb";
 import AuthService from "./service";
 import { LoginResponse } from "./output";
+import UserService from "../user/service";
 
 @Service()
 @Resolver()
 export default class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-
   @Mutation(() => LoginResponse)
   async login(@Arg("token") token: string) {
     const generatedToken = await this.authService.validateFirebaseToken(token);
+
     const response: LoginResponse = {
-      accessToken: generatedToken
+      accessToken: generatedToken,
     };
 
     return response;
   }
 }
-
-
-

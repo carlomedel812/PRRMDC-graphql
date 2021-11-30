@@ -5,7 +5,7 @@ import { User } from "../../entities";
 import { SortDirection } from "../../core/enums/sort-direction.enum";
 
 @InputType()
-export class NewUserInput {
+export class UpdateUserInput {
   @Field()
   @MaxLength(50)
   @MinLength(1)
@@ -19,8 +19,8 @@ export class NewUserInput {
   @Field()
   phoneNumber: string;
 
-  @Field(() => UserRole)
-  role: UserRole;
+  @Field(() => Date)
+  updatedAt: Date;
 }
 
 @InputType()
