@@ -81,3 +81,10 @@
 
 #### Access to the MongoDB Express
 - `http://localhost:8081`
+
+# Deply in OKteto
+- Run 'okteto context'
+  > needed for loging in.
+
+- Run 'okteto stack deploy --build'
+
