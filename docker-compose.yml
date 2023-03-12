@@ -21,7 +21,7 @@ services:
   mongo-db:
     image: mongo:4.2-bionic
     environment:
-      - MONGO_INITDB_DATABASE=mongo-db-mobylasylum
+      - MONGO_INITDB_DATABASE=mongo-db
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=password
     ports:
