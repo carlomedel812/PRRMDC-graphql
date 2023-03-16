@@ -29,10 +29,9 @@ export default class LogFormService {
             "callerInfo.name": { $regex: filters.generalSearch, $options: "i" },
           },
           {
-            patients: {
-              $all: [
-                { name: { $regex: filters.generalSearch, $options: "i" } },
-              ],
+            "patients.name": {
+              $regex: filters.generalSearch,
+              $options: "i",
             },
           },
         ],
