@@ -34,7 +34,7 @@ export class User extends BaseModel {
   @Field()
   email!: string;
 
-  @prop({ default: UserRole.CUSTOMER })
+  @prop({ default: UserRole.AGENT })
   @Field((type) => UserRole)
   role!: UserRole;
 

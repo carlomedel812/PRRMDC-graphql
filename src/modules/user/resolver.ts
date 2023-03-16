@@ -13,7 +13,7 @@ import { UserRole } from "../../core/enums/user-role.enum";
 export default class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Authorized([UserRole.CUSTOMER])
+  @Authorized([UserRole.AGENT])
   @Query((returns) => User)
   async getUserById(@Arg("id") id: ObjectId) {
     const user = await this.userService.getById(id);
