@@ -11,38 +11,38 @@ export class PatientInfoInput {
   @Field()
   name: string;
 
-  @Field()
-  age: number;
+  @Field({ nullable: true })
+  age?: number;
 
-  @Field()
-  isCovidVaccinated: boolean;
+  @Field({ nullable: true })
+  isCovidVaccinated?: boolean;
 
-  @Field()
-  covidVaccineName: string;
+  @Field({ nullable: true })
+  covidVaccineName?: string;
 
-  @Field((type) => Gender)
-  gender: Gender;
+  @Field((type) => Gender, { nullable: true })
+  gender?: Gender;
 
-  @Field((type) => PatientStatus)
-  status: PatientStatus;
+  @Field((type) => PatientStatus, { nullable: true })
+  status?: PatientStatus;
 
-  @Field()
-  bloodPressure: string;
+  @Field({ nullable: true })
+  bloodPressure?: string;
 
-  @Field()
-  respiratoryRate: string;
+  @Field({ nullable: true })
+  respiratoryRate?: string;
 
-  @Field()
-  pulseRate: number;
+  @Field({ nullable: true })
+  pulseRate?: number;
 
-  @Field()
-  temperature: number;
+  @Field({ nullable: true })
+  temperature?: number;
 
-  @Field()
-  spo2: string;
+  @Field({ nullable: true })
+  spo2?: string;
 
-  @Field()
-  glasgowComaScale: string;
+  @Field({ nullable: true })
+  glasgowComaScale?: string;
 }
 
 @InputType()
@@ -50,20 +50,20 @@ export class CallerInfoInput {
   @Field()
   name: string;
 
-  @Field()
-  address: string;
+  @Field({ nullable: true })
+  address?: string;
 
-  @Field()
-  relationToPatient: string;
+  @Field({ nullable: true })
+  relationToPatient?: string;
 
-  @Field()
-  age: number;
+  @Field({ nullable: true })
+  age?: number;
 
-  @Field()
-  contact: number;
+  @Field({ nullable: true })
+  contact?: number;
 
-  @Field((type) => Gender)
-  gender: Gender;
+  @Field((type) => Gender, { nullable: true })
+  gender?: Gender;
 }
 
 @InputType()
@@ -101,8 +101,8 @@ export class NewLogFormInput {
   @Field((type) => NatureOfCall)
   natureOfCall!: NatureOfCall;
 
-  @Field()
-  natureOfCallOthers: string;
+  @Field({ nullable: true })
+  natureOfCallOthers?: string;
 
   @Field((type) => IncidentType)
   incidentType!: IncidentType;
@@ -110,8 +110,8 @@ export class NewLogFormInput {
   @Field((type) => AreaType)
   areaType!: AreaType;
 
-  @Field()
-  areaTypeOthers: string;
+  @Field({ nullable: true })
+  areaTypeOthers?: string;
 
   @Field((type) => CallerInfoInput)
   callerInfo!: CallerInfoInput;
@@ -119,35 +119,35 @@ export class NewLogFormInput {
   @Field((type) => [PatientInfoInput])
   patients!: PatientInfoInput[];
 
-  @Field()
-  massCasualty!: string;
+  @Field({ nullable: true })
+  massCasualty?: string;
 
-  @Field()
-  patientAddress: string;
+  @Field({ nullable: true })
+  patientAddress?: string;
 
-  @Field()
-  locationOfIncident: string;
+  @Field({ nullable: true })
+  locationOfIncident?: string;
 
-  @Field()
-  otherDetail: string;
+  @Field({ nullable: true })
+  otherDetail?: string;
 
-  @Field()
-  actionTaken: string;
+  @Field({ nullable: true })
+  actionTaken?: string;
 
-  @Field()
-  seniorResponder: string;
+  @Field({ nullable: true })
+  seniorResponder?: string;
 
-  @Field()
-  juniorResponder: string;
+  @Field({ nullable: true })
+  juniorResponder?: string;
 
-  @Field()
-  dirver: string;
+  @Field({ nullable: true })
+  dirver?: string;
 
-  @Field()
-  callTaker: string;
+  @Field({ nullable: true })
+  callTaker?: string;
 
-  @Field()
-  dispatcher: string;
+  @Field({ nullable: true })
+  dispatcher?: string;
 
   @Field()
   posted: boolean;

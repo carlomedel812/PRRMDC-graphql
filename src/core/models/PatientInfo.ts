@@ -6,50 +6,50 @@ import { PatientStatus } from "../enums/patient-status.enum";
 @ObjectType()
 export class PatientInfo {
   @prop()
-  @Field()
-  name: string;
+  @Field({ nullable: true })
+  name?: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   age: number;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   isCovidVaccinated: boolean;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   covidVaccineName: string;
 
-  @prop()
-  @Field((type) => Gender)
+  @prop({ default: null })
+  @Field((type) => Gender, { nullable: true })
   gender: Gender;
 
-  @prop()
-  @Field((type) => PatientStatus)
+  @prop({ default: null })
+  @Field((type) => PatientStatus, { nullable: true })
   status: PatientStatus;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   bloodPressure: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   respiratoryRate: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   pulseRate: number;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   temperature: number;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   spo2: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   glasgowComaScale: string;
 }

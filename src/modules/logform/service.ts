@@ -16,6 +16,10 @@ export default class LogFormService {
     return form.save();
   }
 
+  public async getLogForm(id: ObjectId) {
+    return LogFormModel.findById(id);
+  }
+
   public async getPaginated(
     request: GenericPaginationRequest,
     filters?: FiltersInput

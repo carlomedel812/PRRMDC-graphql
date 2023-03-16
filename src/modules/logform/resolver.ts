@@ -6,7 +6,9 @@ import { GenericPaginationRequest } from "../shared/GenericPaginationRequest";
 import { FiltersInput, NewLogFormInput } from "./input";
 import { LogFormConnection } from "./output";
 import LogFormService from "./service";
+import { ObjectId } from "mongodb";
 import { NatureOfCall } from "../../core/enums/nature-of-call.enum";
+
 
 @Service()
 @Resolver()
@@ -17,6 +19,12 @@ export default class LogFormResolver {
   async getAllLogs(@Arg("request") request: GenericPaginationRequest,  @Arg("filters", { nullable: true }) filters?: FiltersInput) {
     return await this.logFormService.getPaginated(request, filters);
   }
+
+  @Query(() => LogForm)
+  async getLog(@Arg("id") id: ObjectId) {
+    return await this.logFormService.getLogForm(id);
+  }
+
 
   @Mutation(() => LogForm)
   async addLogForm(@Arg("request") request: NewLogFormInput) {

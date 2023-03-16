@@ -1,5 +1,5 @@
 import { ObjectType, Field, Directive } from "type-graphql";
-import { getModelForClass, prop } from "@typegoose/typegoose";
+import { getModelForClass, mongoose, plugin, prop } from "@typegoose/typegoose";
 import { BaseModel } from "./base-model";
 import { ObjectId } from "mongodb";
 import { NatureOfCall } from "../core/enums/nature-of-call.enum";
@@ -8,11 +8,21 @@ import { AreaType } from "../core/enums/area-type.enum";
 import { CallerInfo } from "../core/models/CallerInfo";
 import { PatientInfo } from "../core/models/PatientInfo";
 import { TimeStamp } from "../core/models/TimeStamp";
+import AutoIncrementFactory from 'mongoose-sequence';
 
+
+// AutoIncrement now is the instance
+const AutoIncrement = AutoIncrementFactory(mongoose);
+
+@plugin(AutoIncrement, { inc_field: 'caseNo', start_seq: 0 })
 @ObjectType()
 export class LogForm extends BaseModel {
   @Field()
   readonly _id!: ObjectId;
+
+  @prop()
+  @Field()
+  caseNo: number;
 
   @prop({ default: new Date() })
   @Field(() => Date)
@@ -54,44 +64,44 @@ export class LogForm extends BaseModel {
   @Field((type) => [PatientInfo])
   patients!: PatientInfo[];
 
-  @prop()
-  @Field()
-  massCasualty!: string;
+  @prop({ default: null })
+  @Field({ nullable: true })
+  massCasualty?: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   patientAddress: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   locationOfIncident: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   otherDetail: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   actionTaken: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   seniorResponder: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   juniorResponder: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   dirver: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   callTaker: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   dispatcher: string;
 
   @prop()
@@ -100,3 +110,4 @@ export class LogForm extends BaseModel {
 }
 
 export const LogFormModel = getModelForClass(LogForm);
+

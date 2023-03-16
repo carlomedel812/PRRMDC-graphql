@@ -8,23 +8,23 @@ export class CallerInfo {
   @Field()
   name: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   address: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   relationToPatient: string;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   age: number;
 
-  @prop()
-  @Field()
+  @prop({ default: null })
+  @Field({ nullable: true })
   contact: number;
 
-  @prop()
-  @Field((type) => Gender)
+  @prop({ default: null })
+  @Field((type) => Gender, { nullable: true })
   gender: Gender;
 }
