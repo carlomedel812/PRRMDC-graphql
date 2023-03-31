@@ -5,7 +5,7 @@ import { PatientStatus } from "../enums/patient-status.enum";
 
 @ObjectType()
 export class PatientInfo {
-  @prop()
+  @prop({ default: null })
   @Field({ nullable: true })
   name?: string;
 
